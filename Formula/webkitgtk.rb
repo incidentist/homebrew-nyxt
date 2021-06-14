@@ -9,8 +9,10 @@ class Webkitgtk < Formula
   depends_on "enchant"
   depends_on "gtk+3"
   depends_on "libsecret"
+  depends_on "libnotify"
   depends_on "libsoup"
   depends_on "webp"
+  depends_on "woff2"
 
   patch :DATA
 
