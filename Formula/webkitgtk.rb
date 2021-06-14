@@ -18,7 +18,7 @@ class Webkitgtk < Formula
     extra_args = %w[
       -GNinja
       -DPORT=GTK
-      -DENABLE_X11_TARGET=OFF
+      -DENABLE_X11_TARGET=ON
       -DENABLE_WAYLAND_TARGET=OFF
       -DENABLE_QUARTZ_TARGET=ON
       -DENABLE_TOOLS=ON
