@@ -8,7 +8,7 @@ class Webkitgtk < Formula
   depends_on "ninja" => :build
   depends_on "enchant"
   depends_on "gtk+3"
-  depends_on "libgcrypt"
+  depends_on "libsecret"
   depends_on "libsoup"
   depends_on "webp"
 
