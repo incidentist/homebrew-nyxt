@@ -10,9 +10,12 @@ class Webkitgtk < Formula
   depends_on "gtk+3"
   depends_on "libsecret"
   depends_on "libnotify"
+  depends_on "libpng"
   depends_on "libsoup"
+  depends_on "openjpeg"
   depends_on "webp"
   depends_on "woff2"
+  depends_on "zlib"
 
   patch :DATA
 
