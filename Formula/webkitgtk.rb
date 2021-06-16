@@ -270,3 +270,18 @@ index 1834c028ead5..e17d004f5e1a 100644
  #include <tuple>
  
  namespace WebCore {
+
+# Fix build on Catalina and earlier where MSG_NOSIGNAL is not defined
+diff -u Source/WebKit/Platform/IPC/unix/ConnectionUnix.cpp.orig Source/WebKit/Platform/IPC/unix/ConnectionUnix.cpp
+--- Source/WebKit/Platform/IPC/unix/ConnectionUnix.cpp.orig	2021-06-15 23:39:49.000000000 -0700
++++ Source/WebKit/Platform/IPC/unix/ConnectionUnix.cpp	2021-06-15 23:42:21.000000000 -0700
+@@ -51,6 +51,9 @@
+ #else
+ #if USE(GLIB)
+ #define SOCKET_TYPE SOCK_STREAM
++#if !defined(MSG_NOSIGNAL)
++#define MSG_NOSIGNAL 0
++#endif
+ #else
+ #define SOCKET_TYPE SOCK_DGRAM
+ #endif
