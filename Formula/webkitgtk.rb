@@ -17,6 +17,11 @@ class Webkitgtk < Formula
   depends_on "woff2"
   depends_on "zlib"
 
+  # hide WebKitWebProcess in the macOS Dock
+  patch do
+    url "https://raw.githubusercontent.com/midchildan/nixpkgs/f08fcc9c26b84e77516ed2bc92c07376dc4fa0ee/pkgs/development/libraries/webkitgtk/0001-Prevent-WebKitWebProcess-from-being-in-the-dock-or-p.patch"
+  end
+
   patch :DATA
 
   def install
@@ -272,9 +277,9 @@ index 1834c028ead5..e17d004f5e1a 100644
  namespace WebCore {
 
 # Fix build on Catalina and earlier where MSG_NOSIGNAL is not defined
-diff -u Source/WebKit/Platform/IPC/unix/ConnectionUnix.cpp.orig Source/WebKit/Platform/IPC/unix/ConnectionUnix.cpp
---- Source/WebKit/Platform/IPC/unix/ConnectionUnix.cpp.orig	2021-06-15 23:39:49.000000000 -0700
-+++ Source/WebKit/Platform/IPC/unix/ConnectionUnix.cpp	2021-06-15 23:42:21.000000000 -0700
+diff --git a/Source/WebKit/Platform/IPC/unix/ConnectionUnix.cpp b/Source/WebKit/Platform/IPC/unix/ConnectionUnix.cpp
+--- a/Source/WebKit/Platform/IPC/unix/ConnectionUnix.cpp	2021-06-15 23:39:49.000000000 -0700
++++ b/Source/WebKit/Platform/IPC/unix/ConnectionUnix.cpp	2021-06-15 23:42:21.000000000 -0700
 @@ -51,6 +51,9 @@
  #else
  #if USE(GLIB)
