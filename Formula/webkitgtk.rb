@@ -285,3 +285,32 @@ diff -u Source/WebKit/Platform/IPC/unix/ConnectionUnix.cpp.orig Source/WebKit/Pl
  #else
  #define SOCKET_TYPE SOCK_DGRAM
  #endif
+
+ # Fix keyboard event issues on macOS
+ # https://bugs.webkit.org/show_bug.cgi?id=227360
+ diff --git a/Source/WebKit/UIProcess/API/glib/InputMethodFilter.cpp b/Source/WebKit/UIProcess/API/glib/InputMethodFilter.cpp
+index e7bd6a1e0ff673089d378264b0dfb584e5efef84..a8deec644e389c0134cbdaa428cae9d6757cd1b9 100644
+--- a/Source/WebKit/UIProcess/API/glib/InputMethodFilter.cpp
++++ b/Source/WebKit/UIProcess/API/glib/InputMethodFilter.cpp
+@@ -113,10 +113,6 @@ InputMethodFilter::FilterResult InputMethodFilter::filterKeyEvent(PlatformEventK
+     if (!handled)
+         return { };
+ 
+-    // Simple input methods work such that even normal keystrokes fire the commit signal without any preedit change.
+-    if (!m_filteringContext.preeditChanged && m_compositionResult.length() == 1)
+-        return { false, WTFMove(m_compositionResult) };
+-
+     if (!platformEventKeyIsKeyPress(keyEvent))
+         return { };
+ 
+@@ -322,10 +318,6 @@ void InputMethodFilter::committed(const char* compositionString)
+ 
+     auto* webView = webkitInputMethodContextGetWebView(m_context.get());
+     ASSERT(webView);
+-    if (m_filteringContext.isActive) {
+-        if (!m_filteringContext.preeditChanged && preeditWasEmpty && m_compositionResult.length() == 1)
+-            return;
+-    }
+     webkitWebViewConfirmComposition(webView, m_compositionResult);
+     m_compositionResult = { };
+ }
