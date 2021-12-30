@@ -93,7 +93,7 @@ class Webkitgtk < Formula
       -I#{include}/webkitgtk-4.0
       -I#{libepoxy.opt_include}
       -I#{libpng.opt_include}/libpng16
-      -I#{libsoup.opt_include}/libsoup-2.4
+      -I#{libsoup.opt_include}/libsoup-3.0
       -I#{pango.opt_include}/pango-1.0
       -I#{pixman.opt_include}/pixman-1
       -D_REENTRANT
