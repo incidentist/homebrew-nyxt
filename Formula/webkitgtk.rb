@@ -31,6 +31,8 @@ class Webkitgtk < Formula
       -DENABLE_X11_TARGET=OFF
       -DENABLE_WAYLAND_TARGET=OFF
       -DENABLE_QUARTZ_TARGET=ON
+      -DENABLE_GLES2=OFF
+      -DUSE_OPENGL_OR_ES=OFF
       -DENABLE_TOOLS=ON
       -DENABLE_MINIBROWSER=OFF
       -DENABLE_PLUGIN_PROCESS_GTK2=OFF
@@ -43,6 +45,7 @@ class Webkitgtk < Formula
       -DENABLE_GAMEPAD=OFF
       -DUSE_SYSTEMD=OFF
       -DUSE_APPLE_ICU=OFF
+      -DUSE_SOUP2=OFF
     ]
 
     system "cmake", ".", *(std_cmake_args + extra_args)
