@@ -18,8 +18,10 @@ class Nyxt < Formula
       # ENV.deparallelize  # if your formula fails when building in parallel
       # Remove unrecognized options if warned by configure
       # https://rubydoc.brew.sh/Formula.html#std_configure_args-instance_method
-      system "make nyxt"
-      system "make app-bundle"
+      
+      system "cd _build/cl-plus-ssl && git checkout 09e896b04c112e7eb0f9d443a5801d557fbcd3ea"
+      inreplace "_build/cffi/src/libraries.lisp", "#+arm64", ""
+      system "make all"
       bin.install "Nyxt.app"
     end
   
