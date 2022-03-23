@@ -10,10 +10,6 @@ class Nyxt < Formula
     depends_on "libfixposix"
     depends_on "webkitgtk"
   
-    patch do
-      url "https://github.com/atlas-engineer/nyxt/commit/6184884b48b7cacdc51d104cb2299c26437a73d8.diff"
-    end
-  
     def install
       # ENV.deparallelize  # if your formula fails when building in parallel
       # Remove unrecognized options if warned by configure
